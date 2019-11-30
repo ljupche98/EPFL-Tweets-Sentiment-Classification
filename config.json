@@ -1,0 +1,16 @@
+{
+	"data": {
+		"data_path": "data/glove_embeddings",
+		"train_pos": "data/train_pos.txt",
+		"train_neg": "data/train_neg.txt",
+		"test": "data/twitter-datasets/test_data.txt"
+	},
+	
+	"KerasModel": {
+		"trainable": "True",
+		"logs": "logs/",
+		"np_rand_seed": 17,
+		"tf_rand_seed": 17,
+		"max_words": 2
+	}
+}
