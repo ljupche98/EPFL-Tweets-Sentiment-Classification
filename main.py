@@ -1,12 +1,13 @@
-from src.representations.generator import RepresentationsGenerator
+from src.serializer import *
 
-from src.tweets.model import TweetsModel
+# s = DataSerializer()
+# s.save_generators('bow')
+# s.save_generators()
+# s.save_words()
+# s.save_sentences()
 
-tweets_model = TweetsModel()
-representations_generator = RepresentationsGenerator(tweets_model)
-
-representations_generator.fasttext(dim=25)
-representations_generator.fasttext(dim=50)
-
-representations_generator.sent2vec(dim=25)
-representations_generator.sent2vec(dim=50)
+s = DataDeserializer()
+s.load_generators('bow')
+s.load_generators()
+s.load_words()
+s.load_sentences()
