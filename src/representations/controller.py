@@ -2,7 +2,6 @@ import numpy as np
 import functools
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
-
 def cache(func):
     """Keep a cache of previous function calls"""
     @functools.wraps(func)
@@ -31,12 +30,12 @@ class WordRepresentationsController(RepresentationsController):
     def map_words(self, sentence):
         mapping = self.representations_model.get_mapping()
         return list(map(lambda x: mapping[x] if x in mapping else mapping['<unknown>'], sentence.split(' ')))
-    
+
     def avg_words(self, sentence):
         representations = self.representations_model.get_representations()
         sequence = self.map_words(sentence)
         return np.mean(representations[sequence], axis=0)
-            
+
     def __init__(self, sentences_model, representations_model):
         super().__init__(sentences_model, representations_model)
     
@@ -46,7 +45,7 @@ class WordRepresentationsController(RepresentationsController):
         mapping = self.representations_model.get_mapping()
         sequences = np.array([ self.map_words(sentence) for sentence in sentences ])
         return pad_sequences(sequences, maxlen=size, padding='post', value=len(mapping) - 1)
-    
+
     @cache
     def get_representations_average(self):
         sentences = self.sentences_model.get_tweets()
