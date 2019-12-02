@@ -15,6 +15,12 @@ class TweetsModel:
         with open(fname, encoding = 'utf8') as file:
             return [ TweetPreprocessor.tokenize(line.rstrip().split(',', 1)[1]) for line in file.readlines() if len(line) ]
 
+    def build_vocab(self, tweets):
+        vocab = set()
+        for tweet in tweets:
+            vocab.update(tweet.split(' '))
+        return vocab
+
     def __init__(self, full=False):
         ext = '_full.txt' if full else '.txt'
         print('Start loading train tweets...')
@@ -29,6 +35,13 @@ class TweetsModel:
         print('Start loading test tweets...')
         self.tweets_test = np.array(self.load_tweets_test(DATA_DIR + 'test_data.txt'))
         print('Loading done!')
+
+        print('Start building vocab...')
+        self.vocab = self.build_vocab(self.tweets)
+        print('Vocab built!')
+
+    def get_vocab(self):
+        return self.vocab
 
     def get_tweets(self):
         return self.tweets
