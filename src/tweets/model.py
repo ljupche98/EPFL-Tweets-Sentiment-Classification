@@ -7,7 +7,7 @@ DATA_DIR = 'data/'
 
 class TweetsModel:
     def load_tweets(self, fname):
-        with open(fname) as file:
+        with open(fname, encoding = 'utf8') as file:
             return [ TweetPreprocessor.tokenize(line.rstrip()) for line in file.readlines() if len(line) ]
 
     def __init__(self, full=False):

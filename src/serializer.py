@@ -24,7 +24,7 @@ class DataSerializer:
         np.save(RAW_DIR + f'X_{model}', X)
         np.save(RAW_DIR + f'y_{model}', y)
 
-    def save_words(self, model='glove', dim='50', size=50):
+    def save_words(self, model='glove', dim=50, size=50):
         representations_model = WordRepresentationsModel(model, dim)
         representations_controller = WordRepresentationsController(self.tweets_model, representations_model)
         representations = representations_controller.get_representations()
@@ -34,7 +34,7 @@ class DataSerializer:
         np.save(RAW_DIR + f'X_{model}_{dim}_{size}', X)
         np.save(RAW_DIR + f'y_{model}_{dim}_{size}', y)
 
-    def save_sentences(self, model='sent2vec', dim='50'):
+    def save_sentences(self, model='sent2vec', dim=50):
         representations_model = SentenceRepresentationsModel(model, dim)
         representations_controller = SentenceRepresentationsController(self.tweets_model, representations_model)
         X = representations_controller.get_representations()
@@ -50,13 +50,13 @@ class DataDeserializer:
         y = np.load(RAW_DIR + f'y_{model}.npy', allow_pickle=True)
         return X, y
 
-    def load_words(self, model='glove', dim='50', size=50):
-        representations= np.load(RAW_DIR + f'representations_{model}_{dim}_{size}.npy', allow_pickle=True)
+    def load_words(self, model='glove', dim=50, size=50):
+        representations = np.load(RAW_DIR + f'representations_{model}_{dim}_{size}.npy', allow_pickle=True)
         X = np.load(RAW_DIR + f'X_{model}_{dim}_{size}.npy', allow_pickle=True)
         y = np.load(RAW_DIR + f'y_{model}_{dim}_{size}.npy', allow_pickle=True)
         return representations, X, y
 
-    def load_sentences(self, model='sent2vec', dim='50', allow_pickle=True):
+    def load_sentences(self, model='sent2vec', dim=50, allow_pickle=True):
         X = np.load(RAW_DIR + f'X_{model}_{dim}.npy', allow_pickle=True)
         y = np.load(RAW_DIR + f'y_{model}_{dim}.npy', allow_pickle=True)
         return X, y

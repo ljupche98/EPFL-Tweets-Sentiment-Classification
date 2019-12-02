@@ -9,7 +9,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Embedding, LSTM, Dense
 from tensorflow.keras.callbacks import TensorBoard, ModelCheckpoint
 
-from callbacks.EpochEvaluator import EpochEvaluator
+from src.models.callbacks.EpochEvaluator import EpochEvaluator
 
 from tensorflow.keras.models import model_from_json
 
@@ -30,6 +30,7 @@ class KerasModel():
         
         self.path = os.path.join(self.config['logs'], self.model_type)
         self.model_path = os.path.join(self.path, 'model.json')
+        self.pred_path = os.path.join(self.path, 'predictions.csv')
         self.weights_path = os.path.join(self.path, 'weights.hdf5')
         self.epoch_eval_path = os.path.join(self.path, 'epoch_eval.json')
         # self.tensorboard_path = os.path.join(self.path, 'tensorboard_logs')
@@ -42,7 +43,9 @@ class KerasModel():
     
     def read_config(self):
         with open('config.json') as fr:
-            self.config = json.load(fr)['KerasModel']
+            self.config = json.load(fr)
+            self.max_words = self.config['general']['max_words']
+            self.config = self.config['KerasModel']
             self.config['trainable'] = self.config['trainable'] == 'True'
             return True
         
@@ -52,7 +55,7 @@ class KerasModel():
     def init_model(self, embeddings, params):
         self.params = params
         N, M = embeddings.shape
-        self.model.add(Embedding(N, M, input_length = self.config['max_words'], weights = [embeddings],
+        self.model.add(Embedding(N, M, input_length = self.max_words, weights = [embeddings],
                                         name = 'embeddings', trainable = self.config['trainable']))
         
         if self.model_type == 'LSTM':
@@ -68,6 +71,19 @@ class KerasModel():
         with open(self.model_path, 'w') as fw:
             json.dump(self.model.to_json(), fw)
         return
+    
+    
+    def predict(self, X, write = True):
+        pred = self.model.predict_classes(X)
+        
+        if write:
+            with open(self.pred_path, 'w', encoding = 'utf8') as fw:
+                fw.write('Id,Prediction\n')
+                
+                for i in range(len(X.shape[0])):
+                    fw.write('%d,%d\n' % (i + 1, 2 * pred[i] - 1))
+            
+        return pred
     
     
     def load(self, params):
@@ -92,23 +108,24 @@ class KerasModel():
         return
 
 
-LSTM_params = {
-    'units': 25,
-    'dropout': 0,
-    'recurrent_dropout': 0,
-    'activation': 'sigmoid',
-    'loss': 'binary_crossentropy',
-    'optimizer': 'RMSprop',
-    'metrics': ['accuracy'],
-    'epochs': 10,
-    'batch_size': 128
-}
+if __name__ == "__main__":
+    LSTM_params = {
+        'units': 100,
+        'dropout': 0,
+        'recurrent_dropout': 0,
+        'activation': 'sigmoid',
+        'loss': 'binary_crossentropy',
+        'optimizer': 'RMSprop',
+        'metrics': ['accuracy'],
+        'epochs': 100,
+        'batch_size': 128
+    }
 
 
-test_model = KerasModel('LSTM')
-test_model.init_model(np.array([[0, 1], [2, 3], [4, 5]]), LSTM_params)
-test_model.train((np.array([[0, 1], [1, 0], [1, 1]]), np.array([0, 1, 1])), (np.array([[0, 1]]), np.array([[0]])))
+    test_model = KerasModel('LSTM')
+    test_model.init_model(np.array([[0, 1], [2, 3], [4, 5]]), LSTM_params)
+    test_model.train((np.array([[0, 1], [1, 0], [1, 1]]), np.array([0, 1, 1])), (np.array([[0, 1]]), np.array([[0]])))
 
 
-test_model = KerasModel('LSTM')
-print(test_model.load(LSTM_params))
+    test_model = KerasModel('LSTM')
+    print(test_model.load(LSTM_params))

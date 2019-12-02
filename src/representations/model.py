@@ -9,7 +9,7 @@ class WordRepresentationsModel:
         mapping = {}
         representations = []
 
-        with open(fname) as file:
+        with open(fname, encoding = 'utf8') as file:
              for i, line in enumerate(file.readlines()):
                 tokens = line.rstrip().split(' ')
                 mapping[tokens[0]] = i
@@ -35,7 +35,7 @@ class SentenceRepresentationsModel:
     def load_representations(self, fname):
         representations = []
 
-        with open(fname) as file:
+        with open(fname, encoding = 'utf8') as file:
              for i, line in enumerate(file.readlines()):
                 tokens = line.rstrip().split(' ')
                 representations.append(eval(','.join(tokens)))
