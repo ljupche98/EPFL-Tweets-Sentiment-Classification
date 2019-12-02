@@ -39,7 +39,7 @@ class DataSerializer:
         np.save(RAW_DIR + f'y_{model}', y)
 
     def save_words(self, model='glove', dim=25, size=50):
-        representations_model = WordRepresentationsModel(model, dim)
+        representations_model = WordRepresentationsModel(model, dim, self.tweets_model.get_vocab())
         representations_controller = WordRepresentationsController(self.tweets_model, representations_model)
         representations = representations_controller.get_representations()
         X, test = representations_controller.get_representations_sequences(size)
