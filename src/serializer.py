@@ -81,7 +81,7 @@ class DataDeserializer:
         y = np.load(RAW_DIR + f'y_{model}.npy', allow_pickle=True)
         return X, y, test
 
-    def load_words(self, mode='seq', model='glove', dim=50, size=50):
+    def load_words(self, model='glove', mode='seq', dim=50, size=50):
         X = np.load(RAW_DIR + f'X_{model}_{dim}_{size}_{mode}.npy', allow_pickle=True)
         test = np.load(RAW_DIR + f'test_{model}_{dim}_{size}_{mode}.npy', allow_pickle=True)
         y = np.load(RAW_DIR + f'y_{model}_{dim}_{size}.npy', allow_pickle=True)
