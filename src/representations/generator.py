@@ -21,7 +21,7 @@ class RepresentationsGenerator:
         '''
         Note: Doesn't save the representations for performance reasons.
         '''
-        vectorizer = CountVectorizer(analyzer='word', token_pattern=r'\w{1,}')
+        vectorizer = CountVectorizer(analyzer='word', token_pattern=r'\w{1,}', max_features=5000)
         vectorizer.fit(self.sentences_model.get_tweets())
         return vectorizer.transform(self.sentences_model.get_tweets()), vectorizer.transform(self.sentences_model.get_tweets_test())
 

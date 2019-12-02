@@ -48,6 +48,6 @@ class TweetPreprocessor:
         text = re_sub(r"([A-Z]){2,}", TweetPreprocessor.allcaps)
 
         text = re_sub(r"'", "")
-        text = re_sub("\s+", " ")
+        text = re_sub(r"\s+", " ")
 
         return text.lower().strip()
