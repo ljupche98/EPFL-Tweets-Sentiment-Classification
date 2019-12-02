@@ -7,11 +7,11 @@
 	},
 	
 	"general": {
+		"full": "True",
 		"split_seed": 17,
 		"max_words": 40,
 		"emb_dim": 25,
-		"emb_method": "glove",
-		"test": "data/test_data.txt"
+		"emb_method": "glove"
 	},
 	
 	"KerasModel": {

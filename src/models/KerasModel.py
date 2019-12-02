@@ -80,7 +80,7 @@ class KerasModel():
             with open(self.pred_path, 'w', encoding = 'utf8') as fw:
                 fw.write('Id,Prediction\n')
                 
-                for i in range(len(X.shape[0])):
+                for i in range(X.shape[0]):
                     fw.write('%d,%d\n' % (i + 1, 2 * pred[i] - 1))
             
         return pred
