@@ -5,24 +5,24 @@ DATA_DIR = 'data/representations/'
 
 
 class WordRepresentationsModel:
-    def load_representations(self, fname):
+    def load_representations(self, fname, vocab):
         mapping = {}
         representations = []
-
+        i = 0
         with open(fname, encoding = 'utf8') as file:
-             for i, line in enumerate(file.readlines()):
+             for line in file.readlines():
                 tokens = line.rstrip().split(' ')
-                mapping[tokens[0]] = i
-                representations.append(eval(','.join(tokens[1:])))
-        
+                if tokens[0] in vocab or tokens[0] == 'unk': # we need unk
+                    mapping[tokens[0]] = i
+                    representations.append(eval(','.join(tokens[1:])))
+                    i += 1
         # For padding sequences
         representations.append([0] * self.dim)
-
         return mapping, np.array(representations)
 
-    def __init__(self, src, dim):
+    def __init__(self, src, dim, vocab):
         self.dim = dim
-        self.mapping, self.representations = self.load_representations(DATA_DIR + src + f'.{str(dim)}d.txt')
+        self.mapping, self.representations = self.load_representations(DATA_DIR + src + f'.{str(dim)}d.txt', vocab)
 
     def get_dim(self):
         return self.dim
