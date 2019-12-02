@@ -39,17 +39,19 @@ class WordRepresentationsController(RepresentationsController):
     def __init__(self, sentences_model, representations_model):
         super().__init__(sentences_model, representations_model)
     
-    @cache
     def get_representations_sequences(self, size):
-        sentences = self.sentences_model.get_tweets()
-        mapping = self.representations_model.get_mapping()
-        sequences = np.array([ self.map_words(sentence) for sentence in sentences ])
-        return pad_sequences(sequences, maxlen=size, padding='post', value=len(mapping) - 1)
+        def do(sentences):
+            mapping = self.representations_model.get_mapping()
+            sequences = np.array([ self.map_words(sentence) for sentence in sentences ])
+            return pad_sequences(sequences, maxlen=size, padding='post', value=len(mapping) - 1)
 
-    @cache
+        return do(self.sentences_model.get_tweets()), do(self.sentences_model.get_tweets_test())
+
     def get_representations_average(self):
-        sentences = self.sentences_model.get_tweets()
-        return np.array([ self.avg_words(sentence) for sentence in sentences ])
+        def do(sentences):
+            np.array([ self.avg_words(sentence) for sentence in sentences ])
+
+        return do(self.sentences_model.get_tweets()), do(self.sentences_model.get_tweets_test())
 
 
 class SentenceRepresentationsController(RepresentationsController):
