@@ -1,7 +1,10 @@
-from .tweets.model import TweetsModel
-from .representations.model import *
-from .representations.controller import *
-from .representations.generator import *
+import numpy as np
+import scipy.sparse as sp
+
+from src.tweets.model import TweetsModel
+from src.representations.model import *
+from src.representations.controller import *
+from src.representations.generator import *
 
 
 RAW_DIR = 'data/raw/'
@@ -18,10 +21,16 @@ class DataSerializer:
             X = representations_generator.bow()
         elif model == 'tf_idf':
             X = representations_generator.tf_idf(mode='word')
+            sp.save_npz(RAW_DIR + f'X_{model}_word', X)
+
+            X = representations_generator.tf_idf(mode='ngram')
+            sp.save_npz(RAW_DIR + f'X_{model}_ngram', X)
+
+            X = representations_generator.tf_idf(mode='char')
+            sp.save_npz(RAW_DIR + f'X_{model}_char', X)
         else:
             raise Exception('model unknown')
         y = self.tweets_model.get_labels()
-        np.save(RAW_DIR + f'X_{model}', X)
         np.save(RAW_DIR + f'y_{model}', y)
 
     def save_words(self, model='glove', dim='50', size=50):
@@ -31,8 +40,11 @@ class DataSerializer:
         X = representations_controller.get_representations_sequences(size)
         y = representations_controller.get_labels()
         np.save(RAW_DIR + f'representations_{model}_{dim}_{size}', representations)
-        np.save(RAW_DIR + f'X_{model}_{dim}_{size}', X)
+        np.save(RAW_DIR + f'X_{model}_{dim}_{size}_seq', X)
         np.save(RAW_DIR + f'y_{model}_{dim}_{size}', y)
+
+        X = representations_controller.get_representations_average()
+        np.save(RAW_DIR + f'X_{model}_{dim}_{size}_avg', X)
 
     def save_sentences(self, model='sent2vec', dim='50'):
         representations_model = SentenceRepresentationsModel(model, dim)
@@ -45,17 +57,27 @@ class DataSerializer:
 
 class DataDeserializer:
     
-    def load_generators(self, model='tf_idf'):
-        X = np.load(RAW_DIR + f'X_{model}.npy', allow_pickle=True)
+    def load_generators(self, model='tf_idf', mode='word'):
+        if model == 'bow':
+            X = sp.load_npz(RAW_DIR + f'X_{model}.npz')
+        else:
+            if mode == 'word':
+                X = sp.load_npz(RAW_DIR + f'X_{model}_word.npz')
+            elif mode == 'ngram':
+                X = sp.load_npz(RAW_DIR + f'X_{model}_ngram.npz')
+            elif mode == 'char':
+                X = sp.load_npz(RAW_DIR + f'X_{model}_char.npz')
         y = np.load(RAW_DIR + f'y_{model}.npy', allow_pickle=True)
         return X, y
 
-    def load_words(self, model='glove', dim='50', size=50):
-        representations= np.load(RAW_DIR + f'representations_{model}_{dim}_{size}.npy', allow_pickle=True)
-        X = np.load(RAW_DIR + f'X_{model}_{dim}_{size}.npy', allow_pickle=True)
+    def load_words(self, mode='seq', model='glove', dim='50', size=50):
+        X = np.load(RAW_DIR + f'X_{model}_{dim}_{size}_{mode}.npy', allow_pickle=True)
         y = np.load(RAW_DIR + f'y_{model}_{dim}_{size}.npy', allow_pickle=True)
+        if mode == 'avg':
+            return X, y
+        representations = np.load(RAW_DIR + f'representations_{model}_{dim}_{size}.npy', allow_pickle=True)
         return representations, X, y
-
+    
     def load_sentences(self, model='sent2vec', dim='50', allow_pickle=True):
         X = np.load(RAW_DIR + f'X_{model}_{dim}.npy', allow_pickle=True)
         y = np.load(RAW_DIR + f'y_{model}_{dim}.npy', allow_pickle=True)
