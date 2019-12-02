@@ -15,11 +15,8 @@ class WordRepresentationsModel:
                 mapping[tokens[0]] = i
                 representations.append(eval(','.join(tokens[1:])))
         
-        if '<unknown>' not in mapping:
-            mapping['<unknown>'] = len(mapping)
-            representations.append([0] * self.dim)
-        else:
-            representations[mapping['<unknown>']] = [0] * self.dim
+        # For padding sequences
+        representations.append([0] * self.dim)
 
         return mapping, np.array(representations)
 

@@ -59,9 +59,13 @@ class RepresentationsGenerator:
             model = fasttext.load_model(model_fname)
         else:
             raise Exception('load != True')
-        
-        representations = np.array([model.get_word_vector(x) for x in model.words])
-        data = np.concatenate((np.array(model.words).reshape(-1,1), representations), axis=1)
+
+        words = model.words
+        representations = [model.get_word_vector(x) for x in words]
+        if 'unk' not in words:
+            words.append('unk')
+            representations.append(model.get_word_vector('unk'))
+        data = np.concatenate((np.array(words).reshape(-1,1), np.array(representations)), axis=1)
         np.savetxt(DATA_DIR + f'fasttext.{str(dim)}d.txt', data, fmt='%s')
         
     def sent2vec(self, **kwargs):

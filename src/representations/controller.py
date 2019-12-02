@@ -29,7 +29,7 @@ class RepresentationsController:
 class WordRepresentationsController(RepresentationsController):
     def map_words(self, sentence):
         mapping = self.representations_model.get_mapping()
-        return list(map(lambda x: mapping[x] if x in mapping else mapping['<unknown>'], sentence.split(' ')))
+        return list(map(lambda x: mapping[x] if x in mapping else mapping['unk'], sentence.split(' ')))
 
     def avg_words(self, sentence):
         representations = self.representations_model.get_representations()
@@ -41,9 +41,9 @@ class WordRepresentationsController(RepresentationsController):
     
     def get_representations_sequences(self, size):
         def do(sentences):
-            mapping = self.representations_model.get_mapping()
+            representations = self.representations_model.get_representations()
             sequences = np.array([ self.map_words(sentence) for sentence in sentences ])
-            return pad_sequences(sequences, maxlen=size, padding='post', value=len(mapping) - 1)
+            return pad_sequences(sequences, maxlen=size, padding='post', value=len(representations) - 1)
 
         return do(self.sentences_model.get_tweets()), do(self.sentences_model.get_tweets_test())
 
