@@ -10,7 +10,7 @@ class EpochEvaluator(Callback):
     def __init__(self, path, retrain = False):
         self.path = path
         
-        if not retrain:
+        if not retrain and os.path.isfile(self.path):
             os.remove(self.path)
         
         return
