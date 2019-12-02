@@ -49,7 +49,7 @@ class WordRepresentationsController(RepresentationsController):
 
     def get_representations_average(self):
         def do(sentences):
-            np.array([ self.avg_words(sentence) for sentence in sentences ])
+            return np.array([ self.avg_words(sentence) for sentence in sentences ])
 
         return do(self.sentences_model.get_tweets()), do(self.sentences_model.get_tweets_test())
 
