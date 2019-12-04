@@ -1,3 +1,15 @@
+''' This script contains several classical ML algorithms
+for text classification it is used to conduct the experiments
+for our study.
+
+Note: If you want to add your own experiment, implement a function
+with the following signature: 
+    Model(X_train, X_test, y_train, y_test)
+that does proper grid search over the hyperparameter space and
+cross-validates the parameters using 5 folds.
+
+TODO: Store the results in a file.
+'''
 import numpy as np
 from sklearn.linear_model import RidgeClassifier
 from sklearn.linear_model import SGDClassifier

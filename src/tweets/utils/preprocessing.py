@@ -3,6 +3,8 @@ import regex as re
 
 
 class TweetPreprocessor:
+    ''' Adaptation of the Twitter tokenizer by the Stanford NLP group. '''
+    
     FLAGS = re.MULTILINE | re.DOTALL
 
     @staticmethod
