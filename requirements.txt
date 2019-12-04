@@ -1,4 +1,9 @@
 regex
 numpy
+scipy
+pandas
 fasttext
+sent2vec
 sklearn
+tensorflow
+keras
