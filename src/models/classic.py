@@ -48,3 +48,8 @@ def RandomForest(X_train, X_test, y_train, y_test):
     print('Score:')
     print(f' Train set: {round(clf.score(X_train, y_train) * 100, 2)}%')
     print(f'  Test set: {round(clf.score(X_test, y_test) * 100, 2)}%')
+
+
+def NaiveBayes(X_train, X_test, y_train, y_test):
+    # TODO: Implement
+    pass
