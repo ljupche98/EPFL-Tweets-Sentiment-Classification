@@ -124,7 +124,7 @@ class RepresentationsGenerator:
 
         if 'load' not in kwargs:
             np.savetxt(tmp_fname, self.sentences_model.get_tweets(), fmt='%s')
-            subprocess.run(['./fasttext', 'sent2vec',
+            subprocess.run(['./sent2vec/fasttext', 'sent2vec',
                             '-input', tmp_fname,
                             '-output', model_fname[:-4], # removes '.bin
                             '-minCount', '1',

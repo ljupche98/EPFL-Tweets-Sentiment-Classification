@@ -131,3 +131,5 @@ dmypy.json
 
 data/
 tmp/
+env/
+sent2vec/

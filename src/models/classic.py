@@ -51,7 +51,7 @@ def LogisticRegression(X_train, X_test, y_train, y_test, load=False):
                         parameters,
                         cv=CV)
         clf.fit(X_train, y_train)
-        persist_model(clf, mname)
+        # persist_model(clf, mname)
     print_stats(clf, (X_train, X_test, y_train, y_test))
 
 
@@ -68,7 +68,7 @@ def SVM(X_train, X_test, y_train, y_test, load=False):
                         parameters,
                         cv=CV)
         clf.fit(X_train, y_train)
-        persist_model(clf, mname)
+        # persist_model(clf, mname)
     print_stats(clf, (X_train, X_test, y_train, y_test))
 
 
@@ -83,7 +83,7 @@ def RandomForest(X_train, X_test, y_train, y_test, load=False):
                         parameters,
                         cv=CV)
         clf.fit(X_train, y_train)
-        persist_model(clf, mname)
+        # persist_model(clf, mname)
     print_stats(clf, (X_train, X_test, y_train, y_test))
 
 

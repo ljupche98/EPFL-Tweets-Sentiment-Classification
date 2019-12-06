@@ -15,11 +15,8 @@ from src.experiments.executor import ExperimentExecutor
 from src.models.classic import *
 
 
-LOAD = False
-
-
 if __name__ == '__main__':
-    ExperimentExecutor.execute(LogisticRegression, LOAD)
-    ExperimentExecutor.execute(SVM, LOAD)
-    ExperimentExecutor.execute(RandomForest, LOAD)
-    ExperimentExecutor.execute(NaiveBayes, LOAD)
+    ExperimentExecutor.execute(LogisticRegression)
+    ExperimentExecutor.execute(SVM)
+    ExperimentExecutor.execute(RandomForest)
+    ExperimentExecutor.execute(NaiveBayes)
