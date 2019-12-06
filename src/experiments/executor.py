@@ -50,5 +50,5 @@ class ExperimentExecutor:
             X_train, X_test, y_train, y_test = ExperimentExecutor.prepare_data(X, y)
             print(f'Execiting experiment "{experiment.__name__}" with "{desc}" data')
             experiment(X_train, X_test, y_train, y_test, load)
-            print(f'Took: {round((time.time() - s) / 1000, 4)}s')
+            print(f'Took: {round((time.time() - s))}s')
             print()
