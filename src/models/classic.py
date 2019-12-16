@@ -85,9 +85,9 @@ def RandomForest(X_train, X_test, y_train, y_test, load=False):
         clf = load_model(mname)
     else:
         parameters = {
-                'min_samples_leaf': [3,5,25,50]
-                'n_etimators' : [25, 100, 200]
-                'max_features' : ['sqrt', 'log2']
+                'min_samples_leaf': [3,5,25,50],
+                'n_estimators': [25, 100, 200],
+                'max_features': ['sqrt', 'log2']
         }
         clf = GridSearchCV(RandomForestClassifier( bootstrap=True, n_jobs=-1, random_state=50),
                            parameters,
