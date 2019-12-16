@@ -58,7 +58,7 @@ Just run `setup.sh` for creating environment and installing necessary libraries.
 
 #### Reproducibility data
 
-The absolutely necessary data to reproduce our best submission can be downloaded from the following list: [**>> Click here <<**](https://drive.google.com/open?id=1Z7eNpc3GVCLjG_iHSPxM0Gis7oBJERtZ).
+The **necessary data to reproduce our best submission** can be downloaded from the following link: [**>> Click here <<**](https://drive.google.com/open?id=1Z7eNpc3GVCLjG_iHSPxM0Gis7oBJERtZ)
 
 The file must be extracted in the root of this repository. Check the project structure below for more details.
 
