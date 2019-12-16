@@ -58,9 +58,11 @@ Just run `setup.sh` for creating environment and installing necessary libraries.
 
 The whole data and models can be downloaded from the following link: [>> Click here <<](https://drive.google.com/open?id=1CHvwPWkRB5ka3Iox7LSn4KMu5p2_Nlt-)
 
-The file must be extracted in the beginning (root) of this repository.
+The file must be extracted in the root of this repository. Check the project structure below for more details.
 
 This data is needed for reproducibility.
+
+#### Additional word representations
 
 If you want to generate additional own embeddings, execute
 ```
