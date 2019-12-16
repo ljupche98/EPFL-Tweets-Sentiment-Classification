@@ -97,7 +97,7 @@ def RandomForest(X_train, X_test, y_train, y_test, load=False):
     print_stats(clf, (X_train, X_test, y_train, y_test))
 
 
-def NaiveBayes(X_train, X_test, y_train, y_test, load=False)
+def NaiveBayes(X_train, X_test, y_train, y_test, load=False):
     mname = 'NaiveBayes'
     if load:
         clf = load_model(mname)
