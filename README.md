@@ -56,7 +56,7 @@ Just run `setup.sh` for creating environment and installing necessary libraries.
 
 ### Data and Models
 
-The whole data (word embeddings) and models (network architectures and weights) can be downloaded from the following link: [>> Click here <<](https://drive.google.com/open?id=1CHvwPWkRB5ka3Iox7LSn4KMu5p2_Nlt-)
+The whole data (word embeddings) and models (network architectures and weights) can be downloaded from the following link: [**>> Click here <<**](https://drive.google.com/open?id=1CHvwPWkRB5ka3Iox7LSn4KMu5p2_Nlt-)
 
 The file must be extracted in the root of this repository. Check the project structure below for more details.
 
