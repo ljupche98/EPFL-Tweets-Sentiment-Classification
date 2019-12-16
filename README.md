@@ -56,11 +56,19 @@ Just run `setup.sh` for creating environment and installing necessary libraries.
 
 ### Data and Models
 
+#### Reproducibility data
+
+The absolutely necessary data to reproduce our best submission can be downloaded from the following list: [**>> Click here <<**](https://drive.google.com/open?id=1Z7eNpc3GVCLjG_iHSPxM0Gis7oBJERtZ).
+
+The file must be extracted in the root of this repository. Check the project structure below for more details.
+
+#### Additional adata
+
 The whole data (word embeddings) and models (network architectures and weights) can be downloaded from the following link: [**>> Click here <<**](https://drive.google.com/open?id=1CHvwPWkRB5ka3Iox7LSn4KMu5p2_Nlt-)
 
 The file must be extracted in the root of this repository. Check the project structure below for more details.
 
-This data is needed for reproducibility.
+It is needed to test the performance of all our models mentioned in the report.
 
 #### Additional word representations
 
