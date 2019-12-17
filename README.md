@@ -72,7 +72,7 @@ It is needed to test the performance of all our models mentioned in the report.
 
 #### Additional word representations
 
-If you want to generate additional own embeddings, execute
+If you want to generate additional own embeddings, modify accordingly and execute
 ```
 python3 generate_representations.py
 python3 generate_datasets.py
