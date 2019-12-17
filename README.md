@@ -10,7 +10,7 @@ We developed a pipeline for tweet preprocessing, feature engineering and word re
  - User: **ljupche98**
  - Submission ID: **29808**
  - Classification accuracy: **88.3%**
- - F1-score: **88.5%**
+ - F1 score: **88.5%**
 
 
 ## Reproducibility
