@@ -94,7 +94,7 @@ The project is organized as follows:
         ├── GRU                     # Contains the architecture and weight of the last GRU model
         ├── LSTM                    # Contains the architecture and weight of the last LSTM model
         ├── LSTM+GRU                # Contains the architecture and weight of the last LSTM + GRU model
-        ├── reproduce               # A MUST HAVE for reproducibility. Contains architectures and weights of the top 5 DL models
+        ├── reproduce               # Contains architectures and weights of the top 5 DL models
     ├── src                         # Root diractory of our codebase
         ├── experiments             # Contains the code for classical ML experiments
         ├── models                  # Contains classes for ML models
