@@ -12,6 +12,11 @@ dfs = []
 
 def run_model(path):
     ''' This function runs the model and makes the predictions for a given path to the folder.
+    
+    Parameters
+    ----------
+    path: String
+        The path to the folder of the pre-trained model.
     '''
     
     # Read the configuration file of the pre-trained model.
