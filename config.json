@@ -1,23 +1,19 @@
 {
-	"data": {
-		"data_path": "data/glove_embeddings",
-		"train_pos": "data/train_pos.txt",
-		"train_neg": "data/train_neg.txt",
-		"test": "data/twitter-datasets/test_data.txt"
-	},
-	
 	"general": {
 		"full": "True",
-		"split_seed": 17,
-		"max_words": 40,
-		"emb_dim": 25,
-		"emb_method": "glove"
+		"split_seed": 8132,
+		"max_words": 50,
+		"emb_dim": 200,
+		"emb_method": "fasttext",
+		
+		"model": "LSTM",
+		"test_perc": "0.01"
 	},
 	
 	"KerasModel": {
 		"trainable": "True",
 		"logs": "logs/",
-		"np_rand_seed": 17,
-		"tf_rand_seed": 17
+		"np_rand_seed": 9318,
+		"tf_rand_seed": 2129
 	}
 }
