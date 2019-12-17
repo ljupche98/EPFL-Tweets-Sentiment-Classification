@@ -111,7 +111,7 @@ The project is organized as follows:
     ├── run_ml.py                   # Script for running classical ML experiments
     ├── run.py                      # Script for running the final model
     ├── setup.sh                    # Script for setup
-    ├── train_deep_model.py         # Uses the configuration in config.json to train any of the supported deep learning models
+    ├── train_deep_model.py         # Train any of the supported deep learning models using config.json
 
 
 ## Authors
