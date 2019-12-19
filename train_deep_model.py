@@ -11,9 +11,9 @@ with open('config.json') as fr:
     config['full'] = config['full'] == 'True'
 
 
-# Generate embeddings if necessary. We should remove the comments if we want to do so.
-# s = DataSerializer(full = config['full'])
-# s.save_words(model = config['emb_method'], dim = config['emb_dim'], size = config['max_words'])
+# Generate embeddings if necessary. Comment the next 2 lines if necessary.
+s = DataSerializer(full = config['full'])
+s.save_words(model = config['emb_method'], dim = config['emb_dim'], size = config['max_words'])
 
 # Load the necessary embeddings. We assume the embeddings already exists. Run the previous 2 lines if we need to generate embeddings.
 d = DataDeserializer()
@@ -41,7 +41,7 @@ params = {
     'metrics': ['accuracy'],
     
     'epochs': 5,
-    'batch_size': 2 ** 12
+    'batch_size': 2 ** 10
 }
 
 

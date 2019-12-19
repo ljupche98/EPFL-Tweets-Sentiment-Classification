@@ -4,9 +4,9 @@
 		"split_seed": 8132,
 		"max_words": 50,
 		"emb_dim": 200,
-		"emb_method": "fasttext",
+		"emb_method": "glove",
 		
-		"model": "LSTM",
+		"model": "LSTM+GRU",
 		"test_perc": "0.01"
 	},
 	
@@ -15,5 +15,11 @@
 		"logs": "logs/",
 		"np_rand_seed": 9318,
 		"tf_rand_seed": 2129
+	},
+	
+	"NN_hyperparams": {
+		"loss": "binary_crossentropy",
+		"optimizer": "adam",
+		"metrics": "accuracy"
 	}
 }
