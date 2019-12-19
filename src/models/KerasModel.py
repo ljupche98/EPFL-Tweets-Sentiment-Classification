@@ -224,7 +224,7 @@ class KerasModel():
         return pred
     
     
-    def load(self, params, path = None):
+    def load(self, params, path = None, load_weights = True):
         ''' Loads a pre-trained model.
         
         Parameters
@@ -234,6 +234,9 @@ class KerasModel():
         
         path: String
             The path where the model architecture and weights are.
+        
+        load_weights: boolean
+            If True, the weights will be loaded. Else, only the architecture.
         
         Returns
         -------
@@ -253,12 +256,16 @@ class KerasModel():
             model_path = os.path.join(path, 'model.json')
             weights_path = os.path.join(path, 'weights.hdf5')
         
-        # Load the architecture and weights of the pre-trained model, print its summary and return True if successfully read.
+        # Load the architecture (and / or weights) of the pre-trained model, print its summary and return True if successfully read.
         with open(model_path, 'r') as fr:
             self.model = model_from_json(json.load(fr))
-            self.model.load_weights(weights_path)
+            
+            if load_weights:
+                self.model.load_weights(weights_path)
+            
             self.model.compile(loss = params['loss'], optimizer = params['optimizer'], metrics = params['metrics'])
             self.model.summary()
+
             return True
         
         return False
