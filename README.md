@@ -51,6 +51,7 @@ The project is organized as follows:
         ├── LSTM                    # Contains the architecture and weight of the last LSTM model
         ├── LSTM+GRU                # Contains the architecture and weight of the last LSTM + GRU model
         ├── reproduce               # Contains architectures and weights of the top 5 DL models
+        ├── reproduce_train         # Contains architectures, configurations and training scripts of best models
     ├── tmp                         # Folder for temporary data
     ├── src                         # Root diractory of our codebase
         ├── experiments             # Contains the code for classical ML experiments
