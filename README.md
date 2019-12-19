@@ -82,6 +82,8 @@ The data necessary to reproduce our best submission can be downloaded from the f
 
 The file **must be extracted in the root** of this repository. Check the project structure above for more details.
 
+***Note**: The link is only accessible by EPFL emails.*
+
 ### All data
 
 The data necessary to execute the additional experiments can be downloaded from the following link: [**>> Click here <<**](https://drive.google.com/open?id=1ZVDPSf5iijlyq_Kc_Nem8DfBVGkcJACj)
@@ -89,6 +91,8 @@ The data necessary to execute the additional experiments can be downloaded from 
 The file **must be extracted in the root** of this repository. Check the project structure above for more details.
 
 These datasets contain the required word representations, train and test datasets, and model parameters (network architectures and weights).
+
+***Note**: The link is only accessible by EPFL emails.*
 
 ### Generating data
 
