@@ -152,6 +152,8 @@ If you are interested in only executing a subset of the experiments, comment the
 
 ## Training a new model
 
+***Note**: For this you need **reproducibility data**.*
+
 If you want to train a new deep learning model and get its predictions, update ```config.json``` with the desired parameters and the variable params in ```train_deep_model.py```, then execute:
 ```
 python3 train_deep_model.py
