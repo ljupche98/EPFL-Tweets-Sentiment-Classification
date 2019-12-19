@@ -26,6 +26,15 @@ CV = 5
 
 
 def print_stats(clf, data):
+    ''' Utility procedure for printing stats.
+    
+    Parameters
+    ----------
+    clf
+        The clasifier
+    data: tuple
+        The datasets
+    '''
     X_train, X_test, y_train, y_test = data
     print('Optimal parameters:')
     print('', clf.best_params_)
@@ -35,16 +44,25 @@ def print_stats(clf, data):
 
 
 def persist_model(clf, mname):
+    ''' Stores a clasifier on disk. '''
     with open(MODELS_DIR + mname, 'wb') as file:
         pickle.dump(clf, file)
 
 
 def load_model(mname):
+    ''' Loads a clasifier from disk. '''
     with open(MODELS_DIR + mname, 'rb') as file:
         return pickle.load(file)
 
+''' All of the models bellow require four datasets:
+
+1. Train features and labels
+2. Test features and labels
+
+'''
 
 def LogisticRegression(X_train, X_test, y_train, y_test, load=False):
+    ''' Logistic Regression model optimized using grid search. '''
     mname = 'LogisticRegression'
     if load:
         clf = load_model(mname)
@@ -61,6 +79,7 @@ def LogisticRegression(X_train, X_test, y_train, y_test, load=False):
 
 
 def SVM(X_train, X_test, y_train, y_test, load=False):
+    ''' Support Vector Machine model optimized using grid search. '''
     mname = 'SVM'
     if load:
         clf = load_model(mname)
@@ -81,6 +100,7 @@ def SVM(X_train, X_test, y_train, y_test, load=False):
 
 
 def RandomForest(X_train, X_test, y_train, y_test, load=False):
+    ''' Random Forest model optimized using grid search. '''
     mname = 'RandomForest'
     if load:
         clf = load_model(mname)
@@ -99,11 +119,13 @@ def RandomForest(X_train, X_test, y_train, y_test, load=False):
 
 
 def NaiveBayes(X_train, X_test, y_train, y_test, load=False):
+    ''' Naive Bayes model optimized using grid search. '''
     mname = 'NaiveBayes'
     if load:
         clf = load_model(mname)
     else:
-        if type(X_train) == np.ndarray:
+        # We scale the parameters since this model is probabilistic.
+        if type(X_train) == np.ndarray: 
             scaler = MinMaxScaler().fit(X_train)
             X_train = scaler.transform(X_train)
             X_test = scaler.transform(X_test)
