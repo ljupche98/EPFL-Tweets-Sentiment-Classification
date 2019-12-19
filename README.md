@@ -15,7 +15,7 @@ We developed an end-to-end text classification pipeline that contains data prepa
 
 ## Prerequisites
 
-The project was developed and tested on Ubuntu 19.10 and Windows 10, with the following dependencies:
+The project was developed and tested on Ubuntu 19.10, with the following dependencies:
 
 ### Libraries
 
@@ -127,7 +127,7 @@ Make sure you have the right datasets in the appropriate folders in order to rep
 
 Since our final prediction is ensemble of 5 neural networks, you need to train all of them. The training procedure is as follows:
 
-* For every folder (model) in ```logs/reproduce_train/final_predictions.csv```, do the following:
+* For every folder (model) in ```logs/reproduce_train```, do the following:
   * Copy the architecture file (```model.json```) in ```logs/<name of the model>```.
   * Copy the training script (```train_deep_model.py```) and configuration file (```config.json```) in the root of the repository.
   * Make sure your current working directory is the root of the repository.
@@ -135,12 +135,6 @@ Since our final prediction is ensemble of 5 neural networks, you need to train a
   * The newly trained weights are available at ```logs/<name of the model>```. Copy that folder to ```logs/reproduce```.
 * Make the current working directory of the terminal equal to the root of this repository.
 * Execute ```python3 run.py```.
-
-If you want to train a deep learning model and get its predictions, update ```config.json``` with the desired parameters and the variable params in ```train_deep_model.py```, then execute:
-
-```
-python3 train_deep_model.py
-```
 
 ### Additional experiments
 
@@ -155,6 +149,13 @@ python3 run_ml.py
 If you are interested in only executing a subset of the experiments, comment the appropriate lines in this script.
 
 ***Note**: These experiments take long time to complete.*
+
+## Training a new model
+
+If you want to train a new deep learning model and get its predictions, update ```config.json``` with the desired parameters and the variable params in ```train_deep_model.py```, then execute:
+```
+python3 train_deep_model.py
+```
 
 ## Authors
 
