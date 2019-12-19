@@ -21,6 +21,20 @@ We developed a pipeline for tweet preprocessing, feature engineering and word re
 4. Execute ```python3 run.py```.
 5. The final file with the predictions is located at ```logs/reproduce/final_predictions.csv```. It is equal to the final submission at AIcrowd.
 
+### Reproducing training procedure
+
+Since our final prediction is ensemble of 5 neural networks, you need to train all of them. The training procedure is as follows:
+* For every folder (model) in ```logs/reproduce_train/final_predictions.csv```, do the following:
+  * Copy the architecture file (```model.json```) in ```logs/<name of the model>```.
+  * Copy the training script (```train_deep_model.py```) and configuration file (```config.json```) in the root of the repository.
+  * Make sure your current working directory is the root of the repository.
+  * Execute ```python3 train_deep_model.py```.
+  * The newly trained weights are available at ```logs/<name of the model>```. Copy that folder to ```logs/reproduce```.
+* Make the current working directory of the terminal equal to the root of this repository.
+* Execute ```python3 run.py```.
+
+Note that the weight training prodecure is not 100% reproducible. Even with the sameseeds set, every run on the same machine results in slightly different results. These differences are initially small, but they accumulate with every epoch. For instance, after one epoch of LSTM+GRU model, difference in accuracy on validation set becomes +-0.1%.
+
 ### Additional results
 If you want to run the classical machine learning models, execute:
 ```
@@ -58,13 +72,15 @@ Just run `setup.sh` for creating environment and installing necessary libraries.
 
 #### Reproducibility data
 
-The **necessary data to reproduce our best submission** can be downloaded from the following link: [**>> Click here <<**](https://drive.google.com/open?id=1Z7eNpc3GVCLjG_iHSPxM0Gis7oBJERtZ)
+The **necessary data to reproduce our best submission** can be downloaded from the following link: [**>> Click here <<**](https://drive.google.com/open?id=1lJj3EbVhRwUybW6zPg5e9KNXVwH3r1Mr)
 
 The file must be extracted in the root of this repository. Check the project structure below for more details.
 
-#### Additional adata
+#### Additional data
 
 The whole data (word embeddings) and models (network architectures and weights) can be downloaded from the following link: [**>> Click here <<**](https://drive.google.com/open?id=1CHvwPWkRB5ka3Iox7LSn4KMu5p2_Nlt-)
+
+**xxTODOxx** update link when I get back
 
 The file must be extracted in the root of this repository. Check the project structure below for more details.
 
