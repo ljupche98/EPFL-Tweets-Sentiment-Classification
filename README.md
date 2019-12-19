@@ -33,7 +33,6 @@ Since our final prediction is ensemble of 5 neural networks, you need to train a
 * Make the current working directory of the terminal equal to the root of this repository.
 * Execute ```python3 run.py```.
 
-Note that the weight training prodecure is not 100% reproducible. Even with the sameseeds set, every run on the same machine results in slightly different results. These differences are initially small, but they accumulate with every epoch. For instance, after one epoch of LSTM+GRU model, difference in accuracy on validation set becomes +-0.1%.
 
 ### Additional results
 If you want to run the classical machine learning models, execute:
@@ -49,7 +48,7 @@ python3 train_deep_model.py
 
 ## Prerequisites
 
-The project was developed and tested with the following dependencies:
+The project was developed and tested on Ubuntu 19.10 and Windows 10, with the following dependencies:
 
 ### Libraries
 
@@ -88,7 +87,7 @@ It is needed to test the performance of all our models mentioned in the report.
 
 #### Additional word representations
 
-If you want to generate additional own embeddings, modify accordingly and execute
+If you want to generate additional own embeddings, modify accordingly and execute:
 ```
 python3 generate_representations.py
 python3 generate_datasets.py
